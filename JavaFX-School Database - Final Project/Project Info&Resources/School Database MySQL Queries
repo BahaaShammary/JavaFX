@@ -1,0 +1,60 @@
+// create database
+CREATE DATABASE School;
+
+// create tables: 
+
+// Classes Table
+CREATE TABLE Classes (
+    classID varchar(15),
+	PRIMARY KEY (classID)
+);
+
+// Module Table
+CREATE TABLE Modules (
+    moduleCode varchar(25),
+	moduleName varchar(25),
+	PRIMARY KEY (moduleCode)
+);
+
+
+// Student Table
+CREATE TABLE Students (
+	studentID INT,
+    firstName varchar(25),
+    middleName varchar(25),
+    lastName varchar(25),
+    email varchar(65),
+    phone INT, 
+    dob varchar(25), 
+    classID varchar(25),
+    PRIMARY KEY (studentID),
+	FOREIGN KEY (classID) REFERENCES classes(classID)
+);
+
+// Teacher Table:
+CREATE TABLE Teachers (
+	teacherID INT,
+    firstName varchar(25),
+    middleName varchar(25),
+    lastName varchar(25),
+    email varchar(65),
+    phone INT, 
+    qualification varchar(25),
+    PRIMARY KEY (teacherID)
+);
+
+# Student Takes Modules Table: 
+CREATE TABLE studentsmodules (
+    studentID INT,
+    moduleCode varchar(25),
+    grade INT,
+	FOREIGN KEY (studentID) REFERENCES students(studentID),
+	FOREIGN KEY (moduleCode) REFERENCES modules(moduleCode),
+    PRIMARY KEY(studentID, moduleCode)
+)
+
+
+// Student sample insert
+insert into students (studentID, firstName, middleName, lastName, email, phone, dob, classID)
+values(0, "Bahaulddin", "Ahmad", "Shammary", "bahaaulddin@gmail.com", 894895231, '05/02/1994', 'SDH2-C')
+;
